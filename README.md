@@ -36,7 +36,7 @@ Cropper is available via Composer:
 or run
 
 ```bash
-composer require rafaeldms/cropper
+composer require rafaeldms/my-cropper
 ```
 
 ## Documentation
