@@ -135,13 +135,13 @@ class Cropper
     }
 
     /**
-     * @param string $imagePath
+     * @param string|null $imagePath
      * @return bool
      */
-    public function flush(string $imagePath): bool
+    public function flush(?string $imagePath = null): bool
     {
         foreach (scandir($this->cachePath) as $file) {
-            $file = "{$this->cachePath}/{$file}";
+            $file = "$this->cachePath/$file";
             if ($imagePath && strpos($file, $this->hash($imagePath))) {
                 $this->imageDestroy($file);
             } elseif (!$imagePath) {
@@ -260,7 +260,7 @@ class Cropper
     private function toWebP(string $image, $unlinkImage = true): string
     {
         try {
-            $webPConverted = pathinfo($image)["dirname"] . "/" . pathinfo($imagePath)["filename"] . ".webp";
+            $webPConverted = pathinfo($image)["dirname"] . "/" . pathinfo($image)["filename"] . ".webp";
             WebPConvert::convert($image, $webPConverted, ['default-quality' => $this->quality]);
             if($unlinkImage){
                 unlink($image);
