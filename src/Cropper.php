@@ -136,9 +136,9 @@ class Cropper
 
     /**
      * @param string|null $imagePath
-     * @return bool
+     * @return void
      */
-    public function flush(?string $imagePath = null): bool
+    public function flush(?string $imagePath = null): void
     {
         foreach (scandir($this->cachePath) as $file) {
             $file = "$this->cachePath/$file";
